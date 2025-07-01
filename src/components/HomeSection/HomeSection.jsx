@@ -49,7 +49,6 @@ const HomeSection = () => {
                     <ImageIcon />
                   </div>
                 </div>
-                 <div></div>
           
             </form>
         </div>
