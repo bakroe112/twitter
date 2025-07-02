@@ -56,9 +56,12 @@ const Navigation = () => {
           sx={{
             width: "100%",
             borderRadius: "29px",
-            py: "15px",
+            py: "12px",
             bgcolor: "white",
             color: "black",
+            textTransform: "none",
+            fontWeight: "700",
+            fontSize:"15px"
           }}
         >
           Post
@@ -98,10 +101,10 @@ const Navigation = () => {
             sx: {
               overflow: "visible",
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-              mt:"-12px",
-              borderRadius:"15px",
+              mt: "-12px",
+              borderRadius: "15px",
               width: "15%",
-              height:"10%",
+              height: "10%",
               "&::before": {
                 content: '""',
                 display: "block",
@@ -115,7 +118,7 @@ const Navigation = () => {
                 zIndex: 0,
               },
             },
-          }
+          },
         }}
         transformOrigin={{ horizontal: "center", vertical: "bottom" }}
         anchorOrigin={{ horizontal: "center", vertical: "top" }}
