@@ -61,7 +61,7 @@ const Navigation = () => {
             color: "black",
             textTransform: "none",
             fontWeight: "700",
-            fontSize:"15px"
+            fontSize: "15px",
           }}
         >
           Post
@@ -77,16 +77,18 @@ const Navigation = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
       >
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-row items-center space-x-3 w-full">
           <Avatar
             alt="username"
             src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full ">
             <span className="p-0 m-0">Shiori</span>
             <span className="opacity-70">@Shiori2106</span>
           </div>
-          <MoreHorizIcon sx={{ position: "relative" }} />
+          <div>
+            <MoreHorizIcon />
+          </div>
         </div>
       </div>
       <Menu
@@ -103,8 +105,11 @@ const Navigation = () => {
               filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
               mt: "-12px",
               borderRadius: "15px",
-              width: "15%",
-              height: "10%",
+              width: "18%",
+              height: "13%",
+              flexDirection:"column",
+              justifyContent:"center",
+              display: "flex",
               "&::before": {
                 content: '""',
                 display: "block",

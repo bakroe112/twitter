@@ -6,9 +6,8 @@ import ImageIcon from "@mui/icons-material/Image";
 import GifBoxOutlinedIcon from "@mui/icons-material/GifBoxOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import Divider from "@mui/material/Divider";
 import PublicOutlinedIcon from "@mui/icons-material/PublicOutlined";
-
+import TweetCard from "./TweetCard";
 
 const validationSchema = Yup.object().shape({
   content: Yup.string().required("Everyone can reply"),
@@ -39,12 +38,18 @@ const HomeSection = () => {
   };
 
   return (
-    <div className="space-y-5">
-      <section>
-        <h1 className="py-5 text-xl opacity-90 font-bold">For you</h1>
-        <Divider variant="middle" />
+    <div className="space-y-4 border-r-[1px] border-l-[1px] border-gray-200">
+      <section className="flex flex-col border-b-[1px] border-gray-200 ">
+        <div className="flex justify-between">
+          <div className="flex justify-center w-full hover:bg-slate-100 transition duration-200">
+            <h1 className="py-5 text-lg opacity-90 font-semibold">For you</h1>
+          </div>
+          <div className="flex justify-center w-full  hover:bg-slate-100 transition duration-200">
+            <h1 className="py-5 text-lg opacity-90 font-semibold">Following</h1>
+          </div>
+        </div>
       </section>
-      <section className="pb-10">
+      <section className="p-3 pt-0 border-b-[1px] border-gray-200">
         <div className="flex space-x-5">
           <Avatar
             alt="username"
@@ -62,19 +67,18 @@ const HomeSection = () => {
                   {...formik.getFieldProps("content")}
                 />
                 {formik.errors.content && formik.touched.content && (
-                  <span className="text-blue-500 cursor-pointer font-bold items-center ">
+                  <span className="text-blue-500 cursor-pointer font-bold items-center text-[15px] items-center flex border-b-[1px] border-gray-200 pb-3">
                     <PublicOutlinedIcon fontSize="small" />
                     {formik.errors.content}
                   </span>
                 )}
               </div>
 
-              <Divider variant="middle" />
               {/* <div> 
-                <image alt='' src=""/>
-              </div> */}
+                  <image alt='' src=""/>
+                </div> */}
 
-              <div className="flex justify-between items-center mt-5">
+              <div className="flex justify-between items-center mt-3">
                 <div className="flex space-x-5 items-center">
                   <label className="flex items-center cursor-pointer rounded-md space-x-2">
                     <ImageIcon className="text-[#1d9bf0]" />
@@ -141,6 +145,10 @@ const HomeSection = () => {
             </form>
           </div>
         </div>
+      </section>
+
+      <section className="p-3 pt-0">
+        <TweetCard />
       </section>
     </div>
   );
