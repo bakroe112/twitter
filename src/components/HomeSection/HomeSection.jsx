@@ -39,6 +39,7 @@ const HomeSection = () => {
 
   return (
     // border-r-[1px] border-l-[1px] border-gray-200
+       // Chỗ component Home cái chính giữa trang chủ 
     <div className="space-y-4">
       <section className="flex flex-col border-b-[1px] border-gray-200 ">
         <div className="flex justify-between">
