@@ -38,13 +38,14 @@ const HomeSection = () => {
   };
 
   return (
-    <div className="space-y-4 border-r-[1px] border-l-[1px] border-gray-200">
+    // border-r-[1px] border-l-[1px] border-gray-200
+    <div className="space-y-4">
       <section className="flex flex-col border-b-[1px] border-gray-200 ">
         <div className="flex justify-between">
-          <div className="flex justify-center w-full hover:bg-slate-100 transition duration-200">
+          <div className="flex justify-center w-full hover:bg-slate-100">
             <h1 className="py-5 text-lg opacity-90 font-semibold">For you</h1>
           </div>
-          <div className="flex justify-center w-full  hover:bg-slate-100 transition duration-200">
+          <div className="flex justify-center w-full  hover:bg-slate-100">
             <h1 className="py-5 text-lg opacity-90 font-semibold">Following</h1>
           </div>
         </div>

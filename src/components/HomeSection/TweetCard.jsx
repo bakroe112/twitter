@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import RepeatIcon from "@mui/icons-material/Repeat";
-import { alpha, Avatar, Button, IconButton, Menu, MenuItem } from "@mui/material";
+import { Avatar, IconButton, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { menuIteam } from "./MenuItem/MenuItems.js";
-import {tweetIconItem} from "./MenuItem/TweetIconItem.js"
+import { menuItem } from "./MenuItem/MenuItems.js";
+import { tweetIconItem1, tweetIconItem2 } from "./MenuItem/TweetIconItem.js";
+import { CommentIconButton } from "../Icons/CommentIconButton.jsx";
 
 const TweetCard = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,14 +20,14 @@ const TweetCard = () => {
     console.log("Delete Tweet");
     handleClose();
   };
-  const [onHover, setOnHover] = useState(null);
+  const [onHover, setOnHover] = useState(false);
   return (
-    <div className="">
+    <div>
       {/* <div className='flex items-center font-semibold text-gray-700'>
         <RepeatIcon/>
         <p>Your Retweet</p>
     </div> */}
-
+      {/* Chỗ chứa thẻ bài đăng Tweet */}
       <div className="flex space-x-3">
         <Avatar
           src="https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
@@ -83,11 +83,8 @@ const TweetCard = () => {
                   horizontal: "right",
                 }}
               >
-                {menuIteam.map((item, index) => (
-                  <MenuItem
-                    key={index}
-                    onClick={index === 0 ? handleDeleteTweet : handleClose}
-                  >
+                {menuItem(handleDeleteTweet).map((item, index) => (
+                  <MenuItem key={index} onClick={item.onClick}>
                     {item.component}
                     {item.title}
                   </MenuItem>
@@ -109,130 +106,44 @@ const TweetCard = () => {
               <div className="flex space-x-3 text-gray-600 items-center w-full">
                 <div className="flex items-center cursor-pointer w-full">
                   <div className="flex flex-row justify-between items-center mt-1 w-full">
-                    {tweetIconItem.map((item, index) => {
-                      const isOnHover = onHover === index;
-                     if(index <= 3){
-                      return (
+                    {tweetIconItem1.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center"
+                        onMouseEnter={() => setOnHover(index)}
+                        onMouseLeave={() => setOnHover(null)}
+                      >
+                        <CommentIconButton isOnHover={onHover === index} color={item.color}>
+                          <item.component
+                            isOnHover={onHover === index}
+                            color="#1d9bf0"
+                          />
+                        </CommentIconButton>
+                        <span
+                          className="text-[16px]"
+                          style={{
+                            color: onHover === index && item.color,
+                          }}
+                        >
+                          300
+                        </span>
+                      </div>
+                    ))}
+                    <div className="flex items-center gap-1">
+                      {tweetIconItem2.map((item, index) => (
                         <div
-                          className="flex items-center"
-                          key={index}
-                          onMouseEnter={() => setOnHover(index)}
+                          onMouseEnter={() => setOnHover(item.id)}
                           onMouseLeave={() => setOnHover(null)}
                         >
-                          <IconButton
-                            sx={{
-                              backgroundColor:
-                                isOnHover && alpha(item.color, 0.1),
-                              mx: "-6px",
-                              "&:hover": {
-                                backgroundColor: alpha(item.color, 0.1),
-                                color: item.color,
-                              },
-                            }}
-                          >
-                            {item.path !== "" ? (
-                              <svg
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                                class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi"
-                                width="20px"
-                                height="20px"
-                              >
-                                <g>
-                                  <path
-                                    fill={isOnHover && item.color}
-                                    d={item.path}
-                                  ></path>
-                                </g>
-                              </svg>
-                            ) : (
-                              <div
-                                className="flex"
-                                style={{
-                                  color: isOnHover && item.color,
-                                }}
-                              >
-                                {item.icon}
-                              </div>
-                            )}
-                          </IconButton >
-                          <span
-                            className="text-[16px]"
-                            style={{
-                              color: isOnHover && item.color,
-                            }}
-                          >
-                            {item.value}
-                          </span>
+                          <CommentIconButton color="#1d9bf0">
+                            <item.component
+                              isOnHover={onHover === item.id}
+                              color="#1d9bf0"
+                            />
+                          </CommentIconButton>
                         </div>
-                      );
-                     }
-                     if(index === 4){
-                       return (
-                         <div key={index}  onMouseEnter={() => setOnHover(index)}
-                         onMouseLeave={() => setOnHover(null)}>
-                           <IconButton
-                             sx={{
-                               backgroundColor:
-                                 onHover === "4" && alpha(item.color, 0.1),
-                               "&:hover": {
-                                 backgroundColor: alpha(item.color, 0.1),
-                                 color: item.color,
-                               },
-                             }}
-                             onMouseEnter={() => setOnHover("4")}
-                             onMouseLeave={() => setOnHover(null)}
-                           >
-                             <svg
-                               viewBox="0 0 24 24"
-                               aria-hidden="true"
-                               class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi"
-                               width="20px"
-                               height="20px"
-                             >
-                               <g>
-                                 <path
-                                   fill={onHover === "4" && item.color}
-                                   d={item.path}
-                                 ></path>
-                               </g>
-                             </svg>
-                            
-                           </IconButton>
-
-                           <IconButton
-                             sx={{
-                               backgroundColor:
-                                 onHover === "5" && alpha(item.color, 0.1),
-                               mx: "-6px",
-                               "&:hover": {
-                                 backgroundColor: alpha(item.color, 0.1),
-                                 color: item.color,
-                               },
-                             }}
-                             onMouseEnter={() => setOnHover("5")}
-                             onMouseLeave={() => setOnHover(null)}
-                           >
-                             <svg
-                               viewBox="0 0 24 24"
-                               aria-hidden="true"
-                               class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi"
-                               width="20px"
-                               height="20px"
-                             >
-                               <g>
-                                 <path
-                                   fill={onHover === "5" && item.color}
-                                   d={tweetIconItem[5].path}
-                                 ></path>
-                               </g>
-                             </svg>
-                           </IconButton>
-                         </div>
-                       );
-                     }
-                    }
-                    )}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
